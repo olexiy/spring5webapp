@@ -1,4 +1,4 @@
-package com.oxellerator.spring5webapp.model.repositories;
+package com.oxellerator.spring5webapp.repositories;
 
 import com.oxellerator.spring5webapp.model.Publisher;
 import org.springframework.data.repository.CrudRepository;
