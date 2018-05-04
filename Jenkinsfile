@@ -19,7 +19,7 @@ node{
 
   stage ('docker build/push') {
        docker.withRegistry('https://index.docker.io/v1/', 'dockerhub'){
-            def app = docker.build("olexiy/spring5webapp:$(commit_id}", '.').push()
+            def app = docker.build("olexiy/spring5webapp:${commit_id}", '.').push()
        }
   }
 }
