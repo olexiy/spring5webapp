@@ -1,15 +1,25 @@
 node{
-  stage ('Build') {
+  stage ('Preparation') {
+        checkout scm
+        sh "git rev-parse --short HEAD > .git/commit-id"
+        commit_id = readFile(.git/commit-id').trim()
+    }
 
-    git url: 'https://github.com/olexiy/spring5webapp.git'
+  stage ('Build') {
 
     withMaven(
         maven: 'maven 3.5.3',
        // mavenSettingsConfig: 'my-maven-settings',
         mavenLocalRepo: '.repository') {
 
-      sh "mvn clean install"
+        sh "mvn clean install"
 
     }
+  }
+
+  stage ('docker build/push) {
+       docker.withRegistry('https://index.docker.io/v1/', 'dockerhub'){
+            def app = docker.build("olexiy/spring5webapp:$(commit_id}", '.').push()
+       }
   }
 }
