@@ -5,7 +5,7 @@ node{
 
     withMaven(
         maven: 'maven 3.5.3',
-        mavenSettingsConfig: 'my-maven-settings',
+       // mavenSettingsConfig: 'my-maven-settings',
         mavenLocalRepo: '.repository') {
 
       sh "mvn clean install"
