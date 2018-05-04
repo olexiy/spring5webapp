@@ -1,4 +1,4 @@
-pipeline {
+node {
     agent any
     tools {
         maven 'maven 3.5.3'
@@ -6,8 +6,9 @@ pipeline {
     }
     stages {
         stage ('Initialize') {
+            git 'https://github.com/olexiy/spring5webapp.git'
             steps {
-                env.JAVA_HOME="${tool 'jdk-8u45'}"
+                env.JAVA_HOME="${tool 'jdk8'}"
                 env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
                 sh 'java -version'
                 sh '''
