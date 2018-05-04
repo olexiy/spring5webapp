@@ -8,7 +8,7 @@ node{
   stage ('Build') {
 
     withMaven(
-        maven: 'maven 3.5.3',
+        maven: 'mvn',
        // mavenSettingsConfig: 'my-maven-settings',
         mavenLocalRepo: '.repository') {
 
