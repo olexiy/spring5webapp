@@ -18,9 +18,13 @@ node{
   }
 
   stage('SonarQube scan'){
-    def sonarQubeScanerHome = tool name: 'sonar', type: 'hudson.plugin.sonar.SonarRunnerInstallation'
+    def sonarqubeScannerHome = tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
     withCredentials([string(credentialsId: 'sonar', variable: 'sonarLogin')]){
-        sh "${sonarQubeScanerHome}/bin/sonar-scaner -e -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=${sonarLogin} -Dsonar.projectName = spring5webapp -Dsonar.projectVersion='0.0.1-SNAPSHOT' -Dsonar.sources=complete/src/main -Dsonar.tests=complete/src/test -Dsonar.language=java"
+        sh "${sonarqubeScannerHome}/bin/sonar-scanner -e -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=${sonarLogin} -Dsonar.projectName =spring5webapp -Dsonar.projectVersion='0.0.1-SNAPSHOT'                          -Dsonar.sources=complete/src/main/ -Dsonar.tests=complete/src/test/ -Dsonar.language=java"
+        }
+      }
+    }
+
     }
   }
 
